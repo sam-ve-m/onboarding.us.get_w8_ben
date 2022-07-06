@@ -23,7 +23,7 @@ class JWTService:
                 return unique_id, user_dw_id
             raise ErrorOnDecodeJwt
 
-        except Exception as ex:
-            message = "JwtService::decode_jwt_and_get_unique_id::Failed to decode jwt"
-            Gladsheim.error(error=ex, message=message)
-            raise ex
+        except Exception as error:
+            message = "JwtService::decode_jwt_and_get_unique_id::Failed to decode JWT"
+            Gladsheim.error(error=error, message=message)
+            raise error

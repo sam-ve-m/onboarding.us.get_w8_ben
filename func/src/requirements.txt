@@ -1,5 +1,6 @@
-etria-logger==0.1.8
-boto3==1.21.21
-flask==2.0.3
-pydantic==1.9.0
+--extra-index-url https://backend:<FILL_THIS>@nexus.sigame.com.br/repository/pypi/simple
+motor==3.0.0
+flask==2.1.2
+heimdall-client==2.2.0
 python-decouple==3.6
+etria_logger==0.2.0

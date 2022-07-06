@@ -7,17 +7,5 @@ class UserUniqueIdDoesNotExists(Exception):
     msg = "Jormungandr-Onboarding::get_registration_data::Not exists an user with this unique_id"
 
 
-class UnauthorizedError(Exception):
-    pass
-
-
-class ForbiddenError(Exception):
-    pass
-
-
-class BadRequestError(Exception):
-    pass
-
-
 class InternalServerError(Exception):
     pass
