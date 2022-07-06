@@ -3,17 +3,21 @@ from http import HTTPStatus
 
 # THIRD PARTY IMPORTS
 from etria_logger import Gladsheim
-from flask import request
+from flask import request, Flask
 
 # PROJECT IMPORTS
-from func.src.domain.enums.status_code import InternalCode
-from func.src.domain.exceptions.exceptions import ErrorOnDecodeJwt, UserUniqueIdDoesNotExists
-from func.src.domain.response.model import ResponseModel
-from func.src.services.drive_wealth.service import DriveWealthService
-from func.src.services.jwt_service import JWTService
+from src.domain.enums.status_code import InternalCode
+from src.domain.exceptions.exceptions import ErrorOnDecodeJwt, UserUniqueIdDoesNotExists
+from src.domain.response.model import ResponseModel
+from src.services.drive_wealth.service import DriveWealthService
+from src.services.jwt_service import JWTService
 
 
-async def get_w8_ben_document():
+app = Flask(__name__)
+
+
+@app.route('/get_w8_ben')
+async def get_w8_ben():
     jwt_data = request.headers.get("x-thebes-answer")
     unique_id, user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
 
@@ -56,3 +60,7 @@ async def get_w8_ben_document():
             success=False, code=InternalCode.INTERNAL_SERVER_ERROR, message="Unexpected error occurred"
         ).build_http_response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
         return response
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

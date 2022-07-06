@@ -1,8 +1,9 @@
+# PROJECT IMPORTS
+from src.infrastructure.env_config import config
 from src.repositories.base_repository.redis.base import BaseRepositoryRedis
-from func.src.infrastructure.env_config import config
 
 
 class RepositoryRedis(BaseRepositoryRedis):
-    redis_host = config("REDIS_HOST_URL")
+    redis_host = config("REDIS_HOST_ACCESS_URL")
     redis_db = config("REDIS_CACHE_DB")
     prefix = "sphinx:"

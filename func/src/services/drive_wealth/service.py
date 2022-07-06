@@ -1,7 +1,7 @@
 # PROJECT IMPORTS
-from func.src.domain.exceptions.exceptions import InternalServerError
-from func.src.repositories.file.repository import FileRepository
-from func.src.transport.drive_wealth.transport import DWTransport
+from src.domain.exceptions.exceptions import InternalServerError
+from src.repositories.file.repository import FileRepository
+from src.transport.drive_wealth.transport import DWTransport
 
 
 class DriveWealthService:

@@ -7,7 +7,7 @@ from mepho import DWApiTransport
 from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
-from func.src.infrastructure.env_config import config
+from src.infrastructure.env_config import config
 
 
 class DWTransport:

@@ -2,8 +2,8 @@
 from etria_logger import Gladsheim
 
 # STANDARD IMPORTS
-from decouple import config
-from func.src.repositories.base_repository.mongo_db.base import MongoDbBaseRepository
+from src.infrastructure.env_config import config
+from src.repositories.base_repository.mongo_db.base import MongoDbBaseRepository
 
 
 class UserRepository(MongoDbBaseRepository):

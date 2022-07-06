@@ -1,11 +1,11 @@
 # OUTSIDE LIBRARIES
-import aioboto3
+import boto3
 from contextlib import asynccontextmanager
 from etria_logger import Gladsheim
 
 # Sphinx
-from func.src.domain.exceptions.exceptions import InternalServerError
-from func.src.infrastructure.env_config import config
+from src.domain.exceptions.exceptions import InternalServerError
+from src.infrastructure.env_config import config
 
 
 class S3Infrastructure:
@@ -15,7 +15,7 @@ class S3Infrastructure:
     @classmethod
     async def _get_session(cls):
         if cls.session is None:
-            cls.session = aioboto3.Session(
+            cls.session = boto3.Session(
                 aws_access_key_id=config("AWS_ACCESS_KEY_ID"),
                 aws_secret_access_key=config("AWS_SECRET_ACCESS_KEY"),
                 region_name=config("REGION_NAME"),
@@ -49,7 +49,7 @@ class S3Infrastructure:
     async def get_bucket(cls, bucket_name: str):
         try:
             if cls.session is None:
-                cls.session = aioboto3.Session()
+                cls.session = boto3.Session()
             async with cls.session.resource(
                 "s3",
                 aws_access_key_id=config("AWS_ACCESS_KEY_ID"),

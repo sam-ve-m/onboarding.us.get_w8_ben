@@ -1,11 +1,11 @@
 # STANDARD LIBS
 import pickle
-from typing import Union, Optional
+from typing import Union
 
 
 # SPHINX
-from func.src.domain.exceptions.exceptions import InternalServerError
-from func.src.infrastructure.redis.infrastructure import RedisInfrastructure
+from src.domain.exceptions.exceptions import InternalServerError
+from src.infrastructure.redis.infrastructure import RedisInfrastructure
 
 
 class BaseRepositoryRedis(RedisInfrastructure):
