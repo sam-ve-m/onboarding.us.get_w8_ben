@@ -21,7 +21,3 @@ class BadRequestError(Exception):
 
 class InternalServerError(Exception):
     pass
-
-
-class NoPath(Exception):
-    pass

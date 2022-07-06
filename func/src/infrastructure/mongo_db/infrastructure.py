@@ -1,8 +1,6 @@
-# Jormungandr
-from decouple import config
-
-# Third party
+# THIRD PARTY IMPORTS
 from motor.motor_asyncio import AsyncIOMotorClient
+from decouple import config
 
 
 class MongoDBInfrastructure:

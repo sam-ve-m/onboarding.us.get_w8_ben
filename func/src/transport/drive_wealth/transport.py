@@ -1,9 +1,12 @@
+# STANDARD IMPORTS
 import json
-
-from mepho import DWApiTransport
-from aiohttp import ClientResponse
 from typing import Tuple
 
+# THIRD PARTY IMPORTS
+from mepho import DWApiTransport
+from aiohttp import ClientResponse
+
+# PROJECT IMPORTS
 from func.src.infrastructure.env_config import config
 
 
