@@ -9,3 +9,7 @@ class UserUniqueIdDoesNotExists(Exception):
 
 class InternalServerError(Exception):
     pass
+
+
+class ErrorOnGettingResponseFromDriveWealth(Exception):
+    msg = "Jormungandr-Onboarding::DriveWealth::dw_caller_transport.execute_get"

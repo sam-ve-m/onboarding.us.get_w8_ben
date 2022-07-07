@@ -1,13 +1,11 @@
 # PROJECT IMPORTS
 from src.domain.exceptions.exceptions import InternalServerError
-from src.repositories.file.repository import FileRepository
 from src.transport.drive_wealth.transport import DWTransport
 
 
 class DriveWealthService:
 
     dw_transport = DWTransport
-    file_repository = FileRepository
 
     @classmethod
     async def get_w8_pdf(cls, user_dw_id: str) -> str:
@@ -15,10 +13,10 @@ class DriveWealthService:
             user_id=user_dw_id
         )
         if not status:
-            raise InternalServerError("common.unable_to_process")
+            raise InternalServerError("common.unable_to_get_status_from_drive_wealth")
         w8_file = list(filter(lambda x: x["type"]["name"] == "TAX", response))
         if not w8_file:
-            raise InternalServerError("common.unable_to_process")
+            raise InternalServerError("common.unable_to_process_file_from_drive_wealth")
         w8_file_id = w8_file[0]["documentID"]
         status, response = await cls.dw_transport.call_get_physical_get(
             doc_id=w8_file_id

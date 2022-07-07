@@ -3,10 +3,12 @@ import json
 from typing import Tuple
 
 # THIRD PARTY IMPORTS
+from etria_logger import Gladsheim
 from mepho import DWApiTransport
 from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
+from src.domain.exceptions.exceptions import ErrorOnGettingResponseFromDriveWealth
 from src.infrastructure.env_config import config
 
 
@@ -33,6 +35,11 @@ class DWTransport:
         http_response = await cls.dw_caller_transport.execute_get(
             url=formatted_url, query_params={}
         )
+
+        if not http_response:
+            Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response")
+            raise ErrorOnGettingResponseFromDriveWealth
+
         response = await cls._build_response(http_response=http_response)
         return response
 
@@ -46,5 +53,9 @@ class DWTransport:
         http_response = await cls.dw_caller_transport.execute_get(
             url=formatted_url, query_params={}
         )
+        if not http_response:
+            Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response")
+            raise ErrorOnGettingResponseFromDriveWealth
+
         response = await cls._build_response(http_response=http_response)
         return response

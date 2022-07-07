@@ -1,6 +1,8 @@
 # THIRD PARTY IMPORTS
 from motor.motor_asyncio import AsyncIOMotorClient
-from decouple import config
+
+# PROJECT IMPORTS
+from src.infrastructure.env_config import config
 
 
 class MongoDBInfrastructure:
