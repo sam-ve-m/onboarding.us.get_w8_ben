@@ -10,8 +10,7 @@ from src.domain.enums.status_code import InternalCode
 from src.domain.exceptions.exceptions import ErrorOnDecodeJwt, UserUniqueIdDoesNotExists
 from src.domain.response.model import ResponseModel
 from src.services.drive_wealth.service import DriveWealthService
-from src.services.jwt_service import JWTService
-
+from src.services.jwt_service.service import JWTService
 
 app = Flask(__name__)
 
@@ -19,10 +18,10 @@ app = Flask(__name__)
 @app.route('/get_w8_ben')
 async def get_w8_ben() -> Response:
     jwt_data = request.headers.get("x-thebes-answer")
-    unique_id, user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
+    user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
 
     try:
-        w8_ben_link = await DriveWealthService.get_w8_pdf(
+        w8_ben_link = await DriveWealthService.get_w8_pdf_link(
             user_dw_id=user_dw_id
         )
 

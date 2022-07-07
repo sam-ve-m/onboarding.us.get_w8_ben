@@ -1,6 +1,6 @@
 # PROJECT IMPORTS
-from ..domain.exceptions.exceptions import ErrorOnDecodeJwt
-from ..repositories.mongo_db.user.repository import UserRepository
+from src.domain.exceptions.exceptions import ErrorOnDecodeJwt
+from src.repositories.mongo_db.user.repository import UserRepository
 
 # THIRD PARTY IMPORTS
 from etria_logger import Gladsheim
@@ -20,7 +20,7 @@ class JWTService:
                 unique_id = jwt_content["decoded_jwt"]['user'].get('unique_id')
                 user = await cls.user_repository.find_one(unique_id)
                 user_dw_id = user["portfolios"]["default"]["us"]["dw_id"]
-                return unique_id, user_dw_id
+                return user_dw_id
             raise ErrorOnDecodeJwt
 
         except Exception as error:

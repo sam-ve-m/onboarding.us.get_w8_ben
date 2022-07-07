@@ -8,8 +8,8 @@ from mepho import DWApiTransport
 from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
-from src.domain.exceptions.exceptions import ErrorOnGettingResponseFromDriveWealth
-from src.infrastructure.env_config import config
+from ...domain.exceptions.exceptions import ErrorOnGettingResponseFromDriveWealth
+from ...infrastructure.env_config import config
 
 
 class DWTransport:

@@ -1,6 +1,6 @@
 # PROJECT IMPORTS
-from src.domain.exceptions.exceptions import InternalServerError
-from src.transport.drive_wealth.transport import DWTransport
+from ...domain.exceptions.exceptions import InternalServerError
+from ...transport.drive_wealth.transport import DWTransport
 
 
 class DriveWealthService:
@@ -8,7 +8,7 @@ class DriveWealthService:
     dw_transport = DWTransport
 
     @classmethod
-    async def get_w8_pdf(cls, user_dw_id: str) -> str:
+    async def get_w8_pdf_link(cls, user_dw_id: str) -> str:
         status, response = await cls.dw_transport.call_list_all_physical_get(
             user_id=user_dw_id
         )
