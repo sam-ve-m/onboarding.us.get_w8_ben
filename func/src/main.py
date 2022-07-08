@@ -3,7 +3,7 @@ from http import HTTPStatus
 
 # THIRD PARTY IMPORTS
 from etria_logger import Gladsheim
-from flask import request, Flask, Response
+from flask import request, Flask, Response, Request
 
 # PROJECT IMPORTS
 from src.domain.enums.status_code import InternalCode
@@ -12,12 +12,10 @@ from src.domain.response.model import ResponseModel
 from src.services.drive_wealth.service import DriveWealthService
 from src.services.jwt_service.service import JWTService
 
-app = Flask(__name__)
-
 
 @app.route('/get_w8_ben')
-async def get_w8_ben() -> Response:
-    jwt_data = request.headers.get("x-thebes-answer")
+async def get_w8_ben(request_body: Request = request) -> Response:
+    jwt_data = request_body.headers.get("x-thebes-answer")
     user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
 
     try:
@@ -43,15 +41,6 @@ async def get_w8_ben() -> Response:
         ).build_http_response(status=HTTPStatus.UNAUTHORIZED)
         return response
 
-    except UserUniqueIdDoesNotExists as error:
-        Gladsheim.error(error=error, message=error.msg)
-        response = ResponseModel(
-            success=False,
-            code=InternalCode.DATA_NOT_FOUND,
-            message="Unique ID does not exists"
-        ).build_http_response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
-        return response
-
     except ValueError:
         response = ResponseModel(
             success=False,
@@ -68,7 +57,3 @@ async def get_w8_ben() -> Response:
             message="Unexpected error occurred"
         ).build_http_response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
         return response
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

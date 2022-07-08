@@ -10,8 +10,7 @@ from src.repositories.mongo_db.user.repository import UserRepository
 from src.services.jwt_service.service import JWTService
 
 # STUB IMPORTS
-from tests.src.services.jwt_service.service_stub import jwt_decoded_stub, find_one_stub, jwt_data_stub, \
-    jwt_to_decode_stub
+from tests.src.services.jwt_service.service_stub import find_one_stub, jwt_data_stub, jwt_to_decode_stub
 
 
 @pytest.mark.asyncio
@@ -32,7 +31,7 @@ async def test_decode_jwt_and_get_unique_id_when_sending_jwt_to_decode_then_retu
 async def test_decode_jwt_and_get_unique_id_when_sending_jwt_to_decode_then_return_the_expected(
         mock_decode_payload
 ):
-    with pytest.raises(Exception):
+    with pytest.raises(ErrorOnDecodeJwt):
         await JWTService.decode_jwt_and_get_unique_id(
             jwt_data=jwt_to_decode_stub
         )
