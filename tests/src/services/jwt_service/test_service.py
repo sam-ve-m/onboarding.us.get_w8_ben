@@ -2,15 +2,14 @@
 import pytest
 from unittest.mock import patch
 
-# PROJECT IMPORTS
-from heimdall_client import Heimdall, HeimdallStatusResponses
-
-from src.domain.exceptions.exceptions import ErrorOnDecodeJwt
-from src.repositories.mongo_db.user.repository import UserRepository
-from src.services.jwt_service.service import JWTService
-
 # STUB IMPORTS
 from tests.src.services.jwt_service.service_stub import find_one_stub, jwt_data_stub, jwt_to_decode_stub
+
+# PROJECT IMPORTS
+from heimdall_client import Heimdall, HeimdallStatusResponses
+from func.src.domain.exceptions.exceptions import ErrorOnDecodeJwt
+from func.src.repositories.mongo_db.user.repository import UserRepository
+from func.src.services.jwt_service.service import JWTService
 
 
 @pytest.mark.asyncio

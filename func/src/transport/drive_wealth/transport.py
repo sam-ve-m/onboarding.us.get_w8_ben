@@ -1,9 +1,9 @@
 # STANDARD IMPORTS
 import json
 from typing import Tuple
+from decouple import config
 
 # THIRD PARTY IMPORTS
-from decouple import config
 from etria_logger import Gladsheim
 from mepho import DWApiTransport
 from aiohttp import ClientResponse

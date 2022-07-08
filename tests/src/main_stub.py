@@ -1,4 +1,3 @@
-
 stub_w8_response = {
     "result": "https://d1gfu8yyntzl2k.cloudfront.net/02e73c7d-fd38-44f0-acfe-d877de5e037d.pdf",
     "message": "The W8 BEN Link was generated successfully",

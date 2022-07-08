@@ -3,9 +3,9 @@ import pytest
 from unittest.mock import patch
 
 # PROJECT IMPORTS
-from src.domain.exceptions.exceptions import ErrorOnListingPhysicalW8, ErrorOnGettingPhysicalW8
-from src.services.drive_wealth.service import DriveWealthService
-from src.transport.drive_wealth.transport import DWTransport
+from func.src.domain.exceptions.exceptions import ErrorOnListingPhysicalW8, ErrorOnGettingPhysicalW8
+from func.src.services.drive_wealth.service import DriveWealthService
+from func.src.transport.drive_wealth.transport import DWTransport
 
 # STUB IMPORTS
 from tests.src.services.drive_wealth.stub_service import call_list_stub, get_physical_stub, user_dw_id_stub, \
