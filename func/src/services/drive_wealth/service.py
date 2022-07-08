@@ -21,6 +21,7 @@ class DriveWealthService:
         status, response = await cls.dw_transport.call_get_physical_get(
             doc_id=w8_file_id
         )
-
+        if not status:
+            raise InternalServerError("common.unable_to_get_file_from_drive_wealth")
         w8_file_link = response["url"]
         return w8_file_link
