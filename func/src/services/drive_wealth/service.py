@@ -1,5 +1,6 @@
 # PROJECT IMPORTS
-from ...domain.exceptions.exceptions import InternalServerError
+from ...domain.exceptions.exceptions import InternalServerError, \
+    ErrorOnGettingPhysicalW8, ErrorResponseDriveWealth, ErrorOnListingPhysicalW8
 from ...transport.drive_wealth.transport import DWTransport
 
 
@@ -13,15 +14,15 @@ class DriveWealthService:
             user_id=user_dw_id
         )
         if not status:
-            raise InternalServerError("common.unable_to_get_status_from_drive_wealth")
+            raise ErrorOnListingPhysicalW8
         w8_file = list(filter(lambda x: x["type"]["name"] == "TAX", response))
         if not w8_file:
-            raise InternalServerError("common.unable_to_process_file_from_drive_wealth")
+            raise ErrorResponseDriveWealth
         w8_file_id = w8_file[0]["documentID"]
         status, response = await cls.dw_transport.call_get_physical_get(
             doc_id=w8_file_id
         )
         if not status:
-            raise InternalServerError("common.unable_to_get_file_from_drive_wealth")
+            raise ErrorOnGettingPhysicalW8
         w8_file_link = response["url"]
         return w8_file_link

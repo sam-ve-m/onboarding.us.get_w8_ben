@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import patch
 
 # PROJECT IMPORTS
-from src.domain.exceptions.exceptions import InternalServerError
+from src.domain.exceptions.exceptions import ErrorOnListingPhysicalW8, ErrorOnGettingPhysicalW8
 from src.services.drive_wealth.service import DriveWealthService
 from src.transport.drive_wealth.transport import DWTransport
 
@@ -30,7 +30,7 @@ async def test_when_sending_right_params_to_get_w8_pdf_link_then_return_the_expe
 async def test_when_call_list_all_physical_get_is_false_then_return_internal_server_error(
         mock_call_list_all_physical_get
 ):
-    with pytest.raises(InternalServerError):
+    with pytest.raises(ErrorOnListingPhysicalW8):
         await DriveWealthService.get_w8_pdf_link(
             user_dw_id=user_dw_id_stub
         )
@@ -42,7 +42,7 @@ async def test_when_call_list_all_physical_get_is_false_then_return_internal_ser
 async def test_when_call_get_physical_get_is_false_then_return_internal_server_error(
         mock_call_list_all_physical_get, mock_call_get_physical_get
 ):
-    with pytest.raises(InternalServerError):
+    with pytest.raises(ErrorOnGettingPhysicalW8):
         await DriveWealthService.get_w8_pdf_link(
             user_dw_id=user_dw_id_stub
         )

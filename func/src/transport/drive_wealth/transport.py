@@ -8,7 +8,7 @@ from mepho import DWApiTransport
 from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
-from ...domain.exceptions.exceptions import ErrorOnGettingResponseFromDriveWealth
+from ...domain.exceptions.exceptions import ErrorResponseDriveWealth
 from ...infrastructure.env_config import config
 
 
@@ -38,7 +38,7 @@ class DWTransport:
 
         if not http_response:
             Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response")
-            raise ErrorOnGettingResponseFromDriveWealth
+            raise ErrorResponseDriveWealth
 
         response = await cls._build_response(http_response=http_response)
         return response
@@ -55,7 +55,7 @@ class DWTransport:
         )
         if not http_response:
             Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response")
-            raise ErrorOnGettingResponseFromDriveWealth
+            raise ErrorResponseDriveWealth
 
         response = await cls._build_response(http_response=http_response)
         return response
