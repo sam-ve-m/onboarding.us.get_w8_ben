@@ -13,10 +13,7 @@ from src.domain.response.model import ResponseModel
 from src.services.drive_wealth.service import DriveWealthService
 from src.services.jwt_service.service import JWTService
 
-app = Flask(__name__)
 
-
-@app.route('/get_w8_ben')
 async def get_w8_ben(request_body: Request = request) -> Response:
     jwt_data = request_body.headers.get("x-thebes-answer")
     user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
@@ -87,7 +84,3 @@ async def get_w8_ben(request_body: Request = request) -> Response:
             message="Unexpected error occurred"
         ).build_http_response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
         return response
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
