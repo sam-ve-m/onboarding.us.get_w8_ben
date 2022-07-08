@@ -2,8 +2,7 @@
 import pickle
 from typing import Union
 
-
-# SPHINX
+# PROJECT IMPORTS
 from src.domain.exceptions.exceptions import InternalServerError
 from src.infrastructure.redis.infrastructure import RedisInfrastructure
 

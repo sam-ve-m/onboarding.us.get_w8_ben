@@ -3,13 +3,13 @@ import json
 from typing import Tuple
 
 # THIRD PARTY IMPORTS
+from decouple import config
 from etria_logger import Gladsheim
 from mepho import DWApiTransport
 from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
 from ...domain.exceptions.exceptions import ErrorResponseDriveWealth
-from ...infrastructure.env_config import config
 
 
 class DWTransport:

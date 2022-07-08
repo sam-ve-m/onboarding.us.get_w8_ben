@@ -7,7 +7,7 @@ from werkzeug.test import Headers
 
 # PROJECT IMPORTS
 from src.domain.exceptions.exceptions import ErrorOnDecodeJwt
-from src.main import get_w8_ben
+from main import get_w8_ben
 from src.services.drive_wealth.service import DriveWealthService
 from src.services.jwt_service.service import JWTService
 

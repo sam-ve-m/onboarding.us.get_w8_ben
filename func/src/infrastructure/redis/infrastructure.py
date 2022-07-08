@@ -1,4 +1,4 @@
-# OUTSIDE LIBRARIES
+# STANDARD LIBRARIES
 import aioredis
 
 

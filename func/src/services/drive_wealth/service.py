@@ -1,6 +1,5 @@
 # PROJECT IMPORTS
-from ...domain.exceptions.exceptions import InternalServerError, \
-    ErrorOnGettingPhysicalW8, ErrorResponseDriveWealth, ErrorOnListingPhysicalW8
+from ...domain.exceptions.exceptions import ErrorOnGettingPhysicalW8, ErrorResponseDriveWealth, ErrorOnListingPhysicalW8
 from ...transport.drive_wealth.transport import DWTransport
 
 
