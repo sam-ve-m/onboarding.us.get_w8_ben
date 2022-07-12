@@ -3,11 +3,11 @@ import pytest
 from unittest.mock import patch
 
 # STUB IMPORTS
-from func.src.services.jwt_service.service import JWTService
+from src.services.jwt_service.service import JWTService
 from ...services.jwt_service.service_stub import find_one_stub, jwt_data_stub, jwt_to_decode_stub
 
 # PROJECT IMPORTS
-from func.src.repositories.mongo_db.user.repository import UserRepository
+from src.repositories.mongo_db.user.repository import UserRepository
 from heimdall_client import Heimdall, HeimdallStatusResponses
 
 
