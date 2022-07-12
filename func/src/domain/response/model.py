@@ -1,5 +1,5 @@
 # PROJECT IMPORTS
-from func.src.domain.enums.status_code import InternalCode
+from src.domain.enums.status_code import InternalCode
 
 # STANDARD IMPORTS
 from json import dumps
