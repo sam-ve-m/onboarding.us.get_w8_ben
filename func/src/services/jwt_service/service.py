@@ -19,7 +19,7 @@ class JWTService:
                 user = await UserRepository.find_one(unique_id)
                 user_dw_id = user["portfolios"]["default"]["us"]["dw_id"]
                 return user_dw_id
-            raise ErrorOnDecodeJwt
+            raise ErrorOnDecodeJwt("JwtService::decode_jwt_and_get_unique_id::Failed to decode JWT")
 
         except Exception as error:
             message = "JwtService::decode_jwt_and_get_unique_id::Failed to decode JWT"

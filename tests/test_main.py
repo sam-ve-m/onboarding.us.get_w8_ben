@@ -13,7 +13,7 @@ from main import get_w8_ben
 
 # STUB IMPORTS
 from tests.main_stub import stub_dw_link, response_bytes_stub, user_dw_id_stub, request_body_stub
-from tests.src.services.jwt_service.service_stub import jwt_data_stub
+from tests.src.services.jwt_service.service_stub import jwt_data_stub, jwt_invalid
 
 
 @pytest.mark.asyncio
@@ -35,16 +35,16 @@ async def test_get_w8_ben_when_sending_right_params_then_return_the_expected(
 @patch.object(
     Heimdall,
     "decode_payload",
-    return_value=(jwt_data_stub, HeimdallStatusResponses.INVALID_TOKEN))
+    return_value=(jwt_invalid, HeimdallStatusResponses.INVALID_TOKEN))
 async def test_get_w8_ben_when_sending_right_params_then_return_the_expected_error(
         mock_decode_payload
 ):
     app = Flask(__name__)
     with app.test_request_context(
             request_body_stub,
-            headers=Headers({"x-thebes-answer": "jwt_to_decode_stub"}),
+            headers=Headers(None),
     ).request as request:
-        with pytest.raises(ErrorOnDecodeJwt):
+        with pytest.raises(Exception):
             await get_w8_ben(request_body=request)
 
 
