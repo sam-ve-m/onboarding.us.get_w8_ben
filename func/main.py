@@ -6,12 +6,12 @@ from etria_logger import Gladsheim
 from flask import request, Response, Request, Flask
 
 # PROJECT IMPORTS
-from src.domain.enums.status_code import InternalCode
-from src.domain.exceptions.exceptions import ErrorOnDecodeJwt, ErrorOnListingPhysicalW8, ErrorOnGettingPhysicalW8, \
+from func.src.domain.enums.status_code import InternalCode
+from func.src.domain.exceptions.exceptions import ErrorOnDecodeJwt, ErrorOnListingPhysicalW8, ErrorOnGettingPhysicalW8, \
     ErrorResponseDriveWealth
-from src.domain.response.model import ResponseModel
-from src.services.drive_wealth.service import DriveWealthService
-from src.services.jwt_service.service import JWTService
+from func.src.domain.response.model import ResponseModel
+from func.src.services.drive_wealth.service import DriveWealthService
+from func.src.services.jwt_service.service import JWTService
 
 
 async def get_w8_ben(request_body: Request = request) -> Response:

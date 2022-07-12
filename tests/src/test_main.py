@@ -6,10 +6,10 @@ from heimdall_client import Heimdall, HeimdallStatusResponses
 from werkzeug.test import Headers
 
 # PROJECT IMPORTS
-from src.domain.exceptions.exceptions import ErrorOnDecodeJwt
-from main import get_w8_ben
-from src.services.drive_wealth.service import DriveWealthService
-from src.services.jwt_service.service import JWTService
+from func.src.domain.exceptions.exceptions import ErrorOnDecodeJwt
+from func.main import get_w8_ben
+from func.src.services.drive_wealth.service import DriveWealthService
+from func.src.services.jwt_service.service import JWTService
 
 # STUB IMPORTS
 from tests.src.main_stub import stub_dw_link, response_bytes_stub, user_dw_id_stub, request_body_stub

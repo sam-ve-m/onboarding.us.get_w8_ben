@@ -1,5 +1,5 @@
 # PROJECT IMPORTS
-from src.infrastructure.mongo_db.infrastructure import MongoDBInfrastructure
+from func.src.infrastructure.mongo_db.infrastructure import MongoDBInfrastructure
 
 # THIRD PART IMPORTS
 from etria_logger import Gladsheim

@@ -2,7 +2,7 @@
 from decouple import config
 
 # PROJECT IMPORTS
-from src.repositories.base_repository.redis.base import BaseRepositoryRedis
+from func.src.repositories.base_repository.redis.base import BaseRepositoryRedis
 
 
 class RepositoryRedis(BaseRepositoryRedis):

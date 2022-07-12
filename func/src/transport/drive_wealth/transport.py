@@ -9,7 +9,7 @@ from mepho import DWApiTransport
 from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
-from ...domain.exceptions.exceptions import ErrorResponseDriveWealth
+from func.src.domain.exceptions.exceptions import ErrorResponseDriveWealth
 
 
 class DWTransport:
