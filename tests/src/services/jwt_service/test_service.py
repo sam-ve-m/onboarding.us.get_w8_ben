@@ -12,11 +12,10 @@ from heimdall_client import Heimdall, HeimdallStatusResponses
 
 @pytest.mark.asyncio
 @patch.object(Heimdall, "decode_payload", return_value=(jwt_data_stub, HeimdallStatusResponses.SUCCESS))
-@patch("func.src.repositories.mongo_db.user.repository.UserRepository.find_one", return_value=find_one_stub)
+@patch("src.repositories.mongo_db.user.repository.UserRepository.find_one", return_value=find_one_stub)
 async def test_decode_jwt_and_get_unique_id_when_sending_jwt_to_decode_then_return_the_expected(
         mock_find_one,
         mock_decode_payload,
-
 ):
     response = await JWTService.decode_jwt_and_get_unique_id(
         jwt_data=jwt_to_decode_stub
