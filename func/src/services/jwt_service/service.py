@@ -1,6 +1,6 @@
 # PROJECT IMPORTS
-from func.src.domain.exceptions.exceptions import ErrorOnDecodeJwt
-from func.src.repositories.mongo_db.user.repository import UserRepository
+from src.domain.exceptions.exceptions import ErrorOnDecodeJwt
+from src.repositories.mongo_db.user.repository import UserRepository
 
 # THIRD PARTY IMPORTS
 from etria_logger import Gladsheim
