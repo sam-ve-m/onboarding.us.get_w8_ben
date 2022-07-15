@@ -19,9 +19,9 @@ from src.domain.exceptions.exceptions import (ErrorOnDecodeJwt,
 
 async def get_w8_ben(request_body: Request = request) -> Response:
     jwt_data = request_body.headers.get("x-thebes-answer")
-    user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
 
     try:
+        user_dw_id = await JWTService.decode_jwt_and_get_unique_id(jwt_data=jwt_data)
         w8_ben_link = await DriveWealthService.get_w8_pdf_link(
             user_dw_id=user_dw_id
         )
