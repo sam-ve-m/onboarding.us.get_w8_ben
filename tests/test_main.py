@@ -2,18 +2,15 @@
 from unittest.mock import patch
 from flask import Flask
 import pytest
-from heimdall_client import Heimdall, HeimdallStatusResponses
 from werkzeug.test import Headers
 
 # PROJECT IMPORTS
-from src.domain.exceptions.exceptions import ErrorOnDecodeJwt
 from src.services.drive_wealth.service import DriveWealthService
 from src.services.jwt_service.service import JWTService
 from main import get_w8_ben
 
 # STUB IMPORTS
 from tests.main_stub import stub_dw_link, response_bytes_stub, user_dw_id_stub, request_body_stub
-from tests.src.services.jwt_service.service_stub import jwt_data_stub, jwt_invalid
 
 
 @pytest.mark.asyncio
@@ -29,23 +26,6 @@ async def test_get_w8_ben_when_sending_right_params_then_return_the_expected(
     ).request as request:
         response = await get_w8_ben(request_body=request)
         assert response.data == response_bytes_stub
-
-
-@pytest.mark.asyncio
-@patch.object(
-    Heimdall,
-    "decode_payload",
-    return_value=(jwt_invalid, HeimdallStatusResponses.INVALID_TOKEN))
-async def test_get_w8_ben_when_sending_right_params_then_return_the_expected_error(
-        mock_decode_payload
-):
-    app = Flask(__name__)
-    with app.test_request_context(
-            request_body_stub,
-            headers=Headers(None),
-    ).request as request:
-        with pytest.raises(Exception):
-            await get_w8_ben(request_body=request)
 
 
 @pytest.mark.asyncio
