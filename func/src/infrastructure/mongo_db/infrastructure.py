@@ -1,5 +1,7 @@
-# THIRD PARTY IMPORTS
+# STANDARD IMPORTS
 from decouple import config
+
+# THIRD PARTY IMPORTS
 from motor.motor_asyncio import AsyncIOMotorClient
 
 

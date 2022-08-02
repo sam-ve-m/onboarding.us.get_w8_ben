@@ -10,6 +10,7 @@ from aiohttp import ClientResponse
 
 # PROJECT IMPORTS
 from src.domain.exceptions.exceptions import ErrorResponseDriveWealth
+from src.domain.models.jwt.models import Jwt
 
 
 class DWTransport:
@@ -28,10 +29,10 @@ class DWTransport:
     @classmethod
     async def call_list_all_physical_get(
             cls,
-            user_id: str,
-    ):
+            jwt_data: Jwt,
+    ) -> tuple:
         url = config("DW_USER_PHYSICAL_DOCUMENTS_URL")
-        formatted_url = url.format(user_id)
+        formatted_url = url.format(jwt_data.get_drive_wealth_id())
         http_response = await cls.dw_caller_transport.execute_get(
             url=formatted_url, query_params={}
         )
@@ -40,14 +41,16 @@ class DWTransport:
             Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response")
             raise ErrorResponseDriveWealth
 
-        response = await cls._build_response(http_response=http_response)
+        response = await cls._build_response(
+            http_response=http_response
+        )
         return response
 
     @classmethod
     async def call_get_physical_get(
             cls,
             doc_id: str,
-    ):
+    ) -> tuple:
         url = config("DW_USER_PHYSICAL_DOCUMENT_URL")
         formatted_url = url.format(doc_id)
         http_response = await cls.dw_caller_transport.execute_get(
