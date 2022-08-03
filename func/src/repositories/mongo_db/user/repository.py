@@ -3,12 +3,25 @@ from decouple import config
 from etria_logger import Gladsheim
 
 # STANDARD IMPORTS
-from ...base_repository.mongo_db.base import MongoDbBaseRepository
+from src.infrastructure.mongo_db.infrastructure import MongoDBInfrastructure
 
 
-class UserRepository(MongoDbBaseRepository):
+class UserRepository:
+    infra = MongoDBInfrastructure
     database = config("MONGODB_DATABASE_NAME")
     collection = config("MONGODB_USER_COLLECTION")
+
+    @classmethod
+    async def _get_collection(cls):
+        mongo_client = cls.infra.get_client()
+        try:
+            database = mongo_client[cls.database]
+            collection = database[cls.collection]
+            return collection
+        except Exception as error:
+            message = f'MongoUserRepository::_get_collection::Error when trying to get collection'
+            Gladsheim.error(error=error, message=message)
+            raise error
 
     @classmethod
     async def find_one(cls, unique_id: str) -> dict:

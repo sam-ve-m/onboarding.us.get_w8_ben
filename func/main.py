@@ -8,7 +8,7 @@ from flask import request, Response, Request
 # PROJECT IMPORTS
 from src.domain.enums.status_code import InternalCode
 from src.domain.models.jwt.models import Jwt
-from src.domain.response.model import ResponseModel
+from src.domain.models.response.model import ResponseModel
 from src.services.drive_wealth.service import DriveWealthService
 from src.domain.exceptions.exceptions import (
     ErrorOnDecodeJwt,
