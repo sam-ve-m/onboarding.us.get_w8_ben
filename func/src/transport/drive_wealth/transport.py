@@ -32,13 +32,14 @@ class DWTransport:
             jwt_data: Jwt,
     ) -> tuple:
         url = config("DW_USER_PHYSICAL_DOCUMENTS_URL")
-        formatted_url = url.format(jwt_data.get_drive_wealth_id())
+        dw_id = await jwt_data.get_drive_wealth_id()
+        formatted_url = url.format(dw_id)
         http_response = await cls.dw_caller_transport.execute_get(
             url=formatted_url, query_params={}
         )
 
         if not http_response:
-            Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response")
+            Gladsheim.error(message="DriveWealth::dw_caller_transport.execute_get::Error on getting http response", url=formatted_url)
             raise ErrorResponseDriveWealth
 
         response = await cls._build_response(
