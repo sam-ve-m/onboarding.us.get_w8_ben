@@ -14,10 +14,10 @@ spec:
   ingressconfig:
     annotations: null
     host: '*'
-    path: /onboarding/get_w8_ben
+    path: /onboarding/get-w8-ben
     tls: ""
   method: ""
   methods:
   - GET
   prefix: ""
-  relativeurl: /onboarding/get_w8_ben
+  relativeurl: /onboarding/get-w8-ben

@@ -7,24 +7,17 @@ metadata:
 spec:
   builder:
     command: build
-    container:
-      name: ""
-      resources: {}
     image: nexus.sigame.com.br/fission-builder-3.8:0.0.1
-  imagepullsecret: ""
+  imagepullsecret: "nexus-v3"
   keeparchive: false
   poolsize: 3
   resources: {}
   runtime:
-    container:
-      name: ""
-      resources: {}
     image: nexus.sigame.com.br/fission-async:0.1.6
     podspec:
       containers:
         - name: get-w8-ben-env
           env:
-
             - name: HEIMDALL_FILE_BUCKET_NAME
               value: "heimdall_rsa"
             - name: HEIMDALL_AWS_ACCESS_KEY_ID
@@ -40,7 +33,7 @@ spec:
             - name: HEIMDALL_JWT_REQUIRED_FIELDS
               value: "[]"
             - name: HEIMDALL_REDIS_URL
-              value: "redis://heimdal:LLOnmUUffhaUHnewIz@oci-sit-external-redis:6379?db=1"
+              value: "redis://heimdal:LLOnmUUffhaUHnewIz@172.30.11.235:6379?db=1"
 
             - name: ETRIA_LOG_LEVEL
               value: "INFO"
@@ -81,5 +74,4 @@ spec:
               value: "redis://bnd:93uOKu5H@172.30.19.183:6379"
             - name: MEPHO_REDIS_DB
               value: "1"
-
   version: 2
