@@ -3,7 +3,7 @@ from http import HTTPStatus
 
 # THIRD PARTY IMPORTS
 from etria_logger import Gladsheim
-from flask import request, Response, Request
+import flask
 
 # PROJECT IMPORTS
 from src.domain.enums.status_code import InternalCode
@@ -18,8 +18,8 @@ from src.domain.exceptions.exceptions import (
 )
 
 
-async def get_w8_ben(request_body: Request = request) -> Response:
-    thebes_answer = request_body.headers.get("x-thebes-answer")
+async def get_w8_ben() -> flask.Response:
+    thebes_answer = flask.request.headers.get("x-thebes-answer")
 
     try:
         jwt_data = Jwt(jwt=thebes_answer)
@@ -33,7 +33,7 @@ async def get_w8_ben(request_body: Request = request) -> Response:
             success=bool(w8_ben_link),
             result=w8_ben_link,
             message="The W8 BEN Link was generated successfully",
-            code=InternalCode.SUCCESS
+            code=InternalCode.SUCCESS.value
         ).build_http_response(status=HTTPStatus.OK)
 
         return response
@@ -74,7 +74,8 @@ async def get_w8_ben(request_body: Request = request) -> Response:
         ).build_http_response(status=HTTPStatus.UNAUTHORIZED)
         return response
 
-    except ValueError:
+    except ValueError as ex:
+        Gladsheim.error(error=ex, message=str(ex))
         response = ResponseModel(
             success=False,
             code=InternalCode.INVALID_PARAMS,
@@ -83,7 +84,7 @@ async def get_w8_ben(request_body: Request = request) -> Response:
         return response
 
     except Exception as ex:
-        Gladsheim.error(error=ex)
+        Gladsheim.error(error=ex, message=str(ex))
         response = ResponseModel(
             success=False,
             code=InternalCode.INTERNAL_SERVER_ERROR,
