@@ -1,0 +1,55 @@
+include:
+- ./func/*
+kind: ArchiveUploadSpec
+name: func-nTtg
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: get-w8-ben-fn-69f4690b-bd72-4558-b8d1-6868228e40d5
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: get-w8-ben-env
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://func-nTtg
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-08-19T16:57:04Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: get-w8-ben-fn
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: newdeploy
+      MaxScale: 1
+      MinScale: 1
+      SpecializationTimeout: 120
+      TargetCPUPercent: 80
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: get-w8-ben-env
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.get_w8_ben
+    packageref:
+      name: get-w8-ben-fn-69f4690b-bd72-4558-b8d1-6868228e40d5
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
