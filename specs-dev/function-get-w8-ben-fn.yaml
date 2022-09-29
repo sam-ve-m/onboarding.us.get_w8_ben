@@ -51,5 +51,5 @@ spec:
     packageref:
       name: get-w8-ben-fn-69f4690b-bd72-4558-b8d1-6868228e40d5
       namespace: default
-  requestsPerPod: 1
+  requestsPerPod: 10000
   resources: {}
