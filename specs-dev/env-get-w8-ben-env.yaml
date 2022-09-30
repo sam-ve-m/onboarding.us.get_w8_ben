@@ -10,7 +10,6 @@ spec:
     image: nexus.sigame.com.br/fission-builder-3.8:0.0.1
   imagepullsecret: "nexus-v3"
   keeparchive: false
-  poolsize: 3
   resources: {}
   runtime:
     image: nexus.sigame.com.br/fission-async:0.1.6
@@ -71,7 +70,7 @@ spec:
             - name: MEPHO_DW_AUTHENTICATION_URL
               value: "https://bo-api.drivewealth.io/back-office/auth"
             - name: MEPHO_REDIS_HOST
-              value: "redis://bnd:93uOKu5H@172.30.19.183:6379"
+              value: "redis://bnd:jkl321pqr@172.30.11.235:6379"
             - name: MEPHO_REDIS_DB
               value: "1"
   version: 3
