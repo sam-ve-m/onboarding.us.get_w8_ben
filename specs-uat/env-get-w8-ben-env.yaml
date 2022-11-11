@@ -12,7 +12,7 @@ spec:
   keeparchive: false
   resources: {}
   runtime:
-    image: nexus.sigame.com.br/fission-async:0.1.6
+    image: nexus.sigame.com.br/fission-async:0.1.10
     podspec:
       containers:
         - name: get-w8-ben-env
@@ -71,7 +71,20 @@ spec:
             - name: MEPHO_DW_AUTHENTICATION_URL
               value: "https://bo-api.drivewealth.io/back-office/auth"
             - name: MEPHO_REDIS_HOST
-              value: "redis://bnd:93uOKu5H@172.30.19.183:6379"
+              value: "redis://mepho:MueOSapfdfdPIHbwwqQa@172.30.19.183:6379"
             - name: MEPHO_REDIS_DB
               value: "1"
+            - name: MEPHO_CLIENT_LOCK_MANAGER_REDIS_URLS
+              value: '[ "redis://:wkhJ8C2WQhG502Nn@keydb-redlock-1:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-2:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-3:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-4:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-5:6379?db=0"
+           ]'
+            - name: MEPHO_CLIENT_AUTHENTICATION_RETRY_COUNT
+              value: "3"
+            - name: MEPHO_CLIENT_AUTHENTICATION_RETRY_DELAY_MIN
+              value: "10"
+            - name: MEPHO_CLIENT_AUTHENTICATION_RETRY_DELAY_MAX
+              value: "15"
+            - name: MEPHO_CLIENT_AUTHENTICATION_LOCK_MANAGER_TIMEOUT
+              value: "20"
+            - name: MEPHO_CLIENT_AUTHENTICATION_LOCK_MANAGER_IDENTIFIER
+              value: "mepho_authentication"
   version: 3
