@@ -76,8 +76,7 @@ spec:
             - name: MEPHO_REDIS_DB
               value: "1"
             - name: MEPHO_CLIENT_LOCK_MANAGER_REDIS_URLS
-              value: '[ "redis://:wkhJ8C2WQhG502Nn@keydb-redlock-1:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-2:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-3:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-4:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-5:6379?db=0"
-            ]'
+              value: '[ "redis://:wkhJ8C2WQhG502Nn@keydb-redlock-1:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-2:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-3:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-4:6379?db=0","redis://:wkhJ8C2WQhG502Nn@keydb-redlock-5:6379?db=0"]'
             - name: MEPHO_CLIENT_AUTHENTICATION_RETRY_COUNT
               value: "3"
             - name: MEPHO_CLIENT_AUTHENTICATION_RETRY_DELAY_MIN
